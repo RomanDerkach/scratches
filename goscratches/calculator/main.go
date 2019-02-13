@@ -51,9 +51,8 @@ func prioritisation(opStack, postfixExp []string, sign string) ([]string, []stri
 	} else if lastEl := opStack[len(opStack)-1]; priorityMap[sign] > priorityMap[lastEl] {
 		opStack = append(opStack, sign)
 	} else {
-		reverse(opStack)
-		postfixExp = append(postfixExp, opStack...)
-		opStack = []string{sign}
+		postfixExp = append(postfixExp, opStack[len(opStack)-1])
+		opStack = append(opStack[:len(opStack)-1], sign)
 	}
 	return opStack, postfixExp
 }
